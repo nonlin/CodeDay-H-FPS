@@ -25,3 +25,5 @@ And wait!
 Once baking is done you can uncheck the lights_baked and you shoud still see the lights on. 
 
 LIghtmap file https://drive.google.com/file/d/0B1qq2ARt_dq9eFFJSXJxUHkyU1E/view?usp=sharing
+
+put it in here CodeDay-H-FPS\Assets\Done\DoneScenes\DoneStealth
