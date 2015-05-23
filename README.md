@@ -28,4 +28,8 @@ LIghtmap file https://drive.google.com/file/d/0B1qq2ARt_dq9eFFJSXJxUHkyU1E/view?
 
 put it in here CodeDay-H-FPS\Assets\Done\DoneScenes\DoneStealth
 
+<<<<<<< HEAD
 Test commit.
+=======
+test edit
+>>>>>>> 4535f8054ac6e57a21fd7cbfeff7a8f85eec5c4e
