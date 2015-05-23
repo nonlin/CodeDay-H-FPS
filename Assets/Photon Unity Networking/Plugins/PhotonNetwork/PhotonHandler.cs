@@ -127,7 +127,6 @@ internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
 
     public static void StartFallbackSendAckThread()
     {
-#if !UNITY_WEBGL
         if (sendThreadShouldRun)
         {
             return;
@@ -135,14 +134,11 @@ internal class PhotonHandler : Photon.MonoBehaviour, IPhotonPeerListener
 
         sendThreadShouldRun = true;
         SupportClass.CallInBackground(FallbackSendAckThread);   // thread will call this every 100ms until method returns false
-#endif
     }
 
     public static void StopFallbackSendAckThread()
     {
-#if !UNITY_WEBGL
         sendThreadShouldRun = false;
-#endif
     }
 
     public static bool FallbackSendAckThread()

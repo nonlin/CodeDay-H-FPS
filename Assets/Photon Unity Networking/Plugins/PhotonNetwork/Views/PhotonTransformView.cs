@@ -11,7 +11,7 @@ using System.Collections;
 /// </summary>
 [RequireComponent( typeof( PhotonView ) )]
 [AddComponentMenu("Photon Networking/Photon Transform View")]
-public class PhotonTransformView : MonoBehaviour, IPunObservable
+public class PhotonTransformView : MonoBehaviour 
 {
     //Since this component is very complex, we seperated it into multiple objects.
     //The PositionModel, RotationModel and ScaleMode store the data you are able to
@@ -99,7 +99,7 @@ public class PhotonTransformView : MonoBehaviour, IPunObservable
         m_PositionControl.SetSynchronizedValues( speed, turnSpeed );
     }
 
-    public void OnPhotonSerializeView( PhotonStream stream, PhotonMessageInfo info )
+    void OnPhotonSerializeView( PhotonStream stream, PhotonMessageInfo info )
     {
         m_PositionControl.OnPhotonSerializeView( transform.localPosition, stream, info );
         m_RotationControl.OnPhotonSerializeView( transform.localRotation, stream, info );
@@ -142,16 +142,16 @@ public class PhotonTransformView : MonoBehaviour, IPunObservable
     //    {
     //        return;
     //    }
-
-    //    ExitGames.Client.GUI.GizmoTypeDrawer.Draw( m_PositionControl.GetNetworkPosition(),
-    //                                               m_PositionModel.NetworkGizmoType,
-    //                                               m_PositionModel.NetworkGizmoColor,
+        
+    //    ExitGames.Client.GUI.GizmoTypeDrawer.Draw( m_PositionControl.GetNetworkPosition(), 
+    //                                               m_PositionModel.NetworkGizmoType, 
+    //                                               m_PositionModel.NetworkGizmoColor, 
     //                                               m_PositionModel.NetworkGizmoSize );
     //}
 
     //void DoDrawExtrapolatedPositionGizmo()
     //{
-    //    if( m_PositionModel.DrawExtrapolatedGizmo == false ||
+    //    if( m_PositionModel.DrawExtrapolatedGizmo == false || 
     //        m_PositionModel.ExtrapolateOption == PhotonTransformViewPositionModel.ExtrapolateOptions.Disabled ||
     //        m_PositionControl == null )
     //    {

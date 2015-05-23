@@ -40,9 +40,4 @@ MonoBehaviour:
   - RoundTimer
   - DisplayWinPrompt_RPC
   - ToggleMuzzleFlash
-  - ColorRpc
-  - DoJump
-  - Marco
-  - Polo
-  - TaggedPlayer
   DisableAutoOpenWizard: 0
