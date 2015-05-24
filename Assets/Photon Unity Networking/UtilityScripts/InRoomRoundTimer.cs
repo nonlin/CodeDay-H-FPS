@@ -117,7 +117,7 @@ public class InRoomRoundTimer : MonoBehaviour
 		//Start round time over once we have 2 or more players. 
 		if(PhotonNetwork.playerList.Count () > 1 && playerWait && PhotonNetwork.isMasterClient){
 			playerWait = false;
-			this.StartRoundNow(); 
+			//this.StartRoundNow(); 
 		}
 		DisplayTimer();
     }

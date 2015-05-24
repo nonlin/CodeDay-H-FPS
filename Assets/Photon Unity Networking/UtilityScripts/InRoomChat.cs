@@ -24,6 +24,11 @@ public class InRoomChat : Photon.MonoBehaviour
 
     public void OnGUI()
     {
+		if (Event.current.type == EventType.keyDown && (Event.current.keyCode == KeyCode.Tab || Event.current.character == '\t')) 
+		{
+			Event.current.Use ();
+		}
+
         if (!this.IsVisible || PhotonNetwork.connectionStateDetailed != PeerState.Joined)
         {
             return;
@@ -49,7 +54,7 @@ public class InRoomChat : Photon.MonoBehaviour
 
         scrollPos = GUILayout.BeginScrollView(scrollPos);
         GUILayout.FlexibleSpace();
-        for (int i = messages.Count - 1; i >= 0; i--)
+        for (int i = 0; i < messages.Count; i++)
         {
             GUILayout.Label(messages[i]);
         }
@@ -72,6 +77,8 @@ public class InRoomChat : Photon.MonoBehaviour
     public void Chat(string newLine, PhotonMessageInfo mi)
     {
         string senderName = "anonymous";
+		const int MAXLINES = 5;
+		//scrollPos.y = 10000000;
 
         if (mi != null && mi.sender != null)
         {
@@ -86,6 +93,13 @@ public class InRoomChat : Photon.MonoBehaviour
         }
 
         this.messages.Add(senderName +": " + newLine);
+
+		/**
+		while (messages.Count > MAXLINES) 
+		{
+			messages.RemoveAt (0);
+		}
+		*/
     }
 
     public void AddLine(string newLine)
