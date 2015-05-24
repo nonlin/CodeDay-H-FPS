@@ -132,7 +132,7 @@ public class InRoomRoundTimer : MonoBehaviour
 
 
         // simple gui for output
-       /* GUILayout.BeginArea(TextPos);
+       GUILayout.BeginArea(TextPos);
         GUILayout.Label(string.Format("elapsed: {0:0.000}", elapsedTime));
         GUILayout.Label(string.Format("remaining: {0:0.000}", remainingTime));
         GUILayout.Label(string.Format("turn: {0:0}", turn));
@@ -140,7 +140,7 @@ public class InRoomRoundTimer : MonoBehaviour
         {
             this.StartRoundNow();
         }
-        GUILayout.EndArea();*/
+        GUILayout.EndArea();
     }
 
 	public void DisplayTimer(){

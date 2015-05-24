@@ -410,6 +410,7 @@ public class PlayerNetworkMover : Photon.MonoBehaviour {
 
 	void OnDestroy() {
 		// Unsubscribe, so this object can be collected by the garbage collection
+		if(!NM.GameOver)
 		RespawnMe -=  NM.StartSpawnProcess;
 		SendNetworkMessage -= NM.AddMessage;
 

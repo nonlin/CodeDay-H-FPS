@@ -174,25 +174,36 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	IEnumerator SpawnPlayer(float respawnTime){
+		yield return new WaitForSeconds (respawnTime);
 
-		yield return new WaitForSeconds(respawnTime);
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-		//Turn Lobby Listner off again
-		GameObject.FindGameObjectWithTag ("LobbyCam").GetComponent<AudioListener> ().enabled = false;
-		//Debug.Log ("<color=red>Joined Room </color>" + PhotonNetwork.player.name + " " + photonView.isMine);
-		int index = Random.Range (0, spawnPoints.Length);
-		//Create/Spawn player on network
-		player = PhotonNetwork.Instantiate ("FPSPlayer", spawnPoints[index].position, spawnPoints[index].rotation, 0);
-		//Once Player dies on network it will call Respawn me which will then call StartSpawn
-		player.GetComponent<PlayerNetworkMover> ().RespawnMe += StartSpawnProcess;
-		//player.GetComponent<PlayerNetworkMover> ().ScoreStats += onDeath;
-		player.GetComponent<PlayerNetworkMover> ().SendNetworkMessage += AddMessage;//"Subscribe" to it
+		if (!GameOver) {
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+			//Turn Lobby Listner off again
+			GameObject.FindGameObjectWithTag ("LobbyCam").GetComponent<AudioListener> ().enabled = false;
+			//Debug.Log ("<color=red>Joined Room </color>" + PhotonNetwork.player.name + " " + photonView.isMine);
+			int index = Random.Range (0, spawnPoints.Length);
+			//Create/Spawn player on network
+			player = PhotonNetwork.Instantiate ("FPSPlayer", spawnPoints [index].position, spawnPoints [index].rotation, 0);
+			//Once Player dies on network it will call Respawn me which will then call StartSpawn
+			player.GetComponent<PlayerNetworkMover> ().RespawnMe += StartSpawnProcess;
+			//player.GetComponent<PlayerNetworkMover> ().ScoreStats += onDeath;
+			player.GetComponent<PlayerNetworkMover> ().SendNetworkMessage += AddMessage;//"Subscribe" to it
 
-		sceneCamera.enabled = false;
-		AddMessage ("Player " + PhotonNetwork.player.name + " has spawned.");
-		//Add player that just spawned to player list. 
-	
+			sceneCamera.enabled = false;
+			AddMessage ("Player " + PhotonNetwork.player.name + " has spawned.");
+		}
+
+		/*if (GameOver) {
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			Debug.Log ("Game Is Over");
+		}
+		else{
+			Debug.Log ("Game Not Yet Over");
+		}*/
+			//Add player that just spawned to player list. 
+
 	}
 
 	public void AddMessage(string message){
@@ -220,6 +231,13 @@ public class NetworkManager : MonoBehaviour {
 
 	[RPC]
 	void DisplayWinPrompt_RPC(string playerName){
+
+		//Time.timeScale = 0;//To freeze time
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		//Disable Shooting and movement
+		player.GetComponent<UnitySampleAssets.Characters.FirstPerson.FirstPersonController>().enabled = false;
+		player.GetComponentInChildren<PlayerShooting>().enabled = false;
 
 		//Display Win Screen
 		WinPrompt.SetActive(true);

@@ -105,6 +105,10 @@ public class GameManager : MonoBehaviour {
 		PlayerPrefs.SetInt("vSync", (on ? 1 : 0));
 	}
 
+	public void MainMenu(){
+		Application.LoadLevel(Application.loadedLevel);
+	}
+
 	public void QuitGame(){
 		
 		Application.Quit();
